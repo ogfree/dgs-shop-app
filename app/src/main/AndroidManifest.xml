@@ -14,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:configChanges="orientation|screenSize"
-            android:name="com.example.app.MainActivity"
+            android:name="com.damodarglobal.app.MainActivity"
             android:label="@string/app_name"
             android:exported="true">
             <intent-filter>
