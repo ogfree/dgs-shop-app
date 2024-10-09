@@ -3,502 +3,585 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damodar Global Solutions - Comprehensive Business Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>DamodarGS Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #17a2b8;
+            --primary-color: #6C63FF;
+            --secondary-color: #4CAF50;
+            --background-color: #F0F4F8;
             --text-color: #333;
-            --bg-color: #f8f9fa;
-            --white: #ffffff;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --card-background: #FFFFFF;
         }
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
             color: var(--text-color);
-            background-color: var(--bg-color);
         }
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 2rem;
         }
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
+        h1, h2 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .product-image {
             width: 100%;
-            top: 0;
-            z-index: 1000;
+            height: 200px;
+            object-fit: contain;
         }
-        nav {
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        .product-price {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #5A52D5;
+        }
+        .cart {
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-        main {
-            margin-top: 4rem;
-        }
-        .hero {
-            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        .hero h1 {
-            font-size: 3rem;
             margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
         }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Button color */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-   }
-
-.button:hover {
-    background-color: #0056b3; /* Darker button color on hover */
-}
-        .cta-button {
-            display: inline-block;
+        .cart-item button {
             background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
         }
-        .cta-button:hover {
-            background-color: var(--secondary-color);
+        .cart-item button.remove {
+            background-color: #FF6347;
         }
-        section {
-            padding: 5rem 0;
+        .cart-item button:hover {
+            background-color: #5A52D5;
         }
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .cart-item button.remove:hover {
+            background-color: #FF4500;
+        }
+        .cart-item input.cart-quantity {
+            width: 40px;
+            padding: 0.25rem;
             text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            transition: transform 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1rem;
-        }
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .service-card p {
-            margin-bottom: 1rem;
-        }
-        .service-details {
-            display: none;
+        .cart-total {
             margin-top: 1rem;
-        }
-        .show-details {
-            background-color: transparent;
-            border: none;
-            color: var(--primary-color);
-            cursor: pointer;
             font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--secondary-color);
         }
-        .about {
-            background-color: var(--white);
-        }
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-        .about-image {
-            flex: 1;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .about-text {
-            flex: 1;
-        }
-        .testimonials {
-            text-align: center;
-        }
-        .testimonial-card {
-            background-color: var(--white);
-            border-radius: 10px;
+        .order-form {
+            background-color: var(--card-background);
+            border-radius: 1rem;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .testimonial-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-container {
+            display: flex;
             margin-bottom: 1rem;
         }
-        .contact {
-            background-color: var(--white);
-        }
-        .contact form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .contact form input,
-        .contact form textarea {
-            width: 100%;
-            padding: 0.8rem;
+        #search-input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            font-size: 1rem;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
+            border-radius: 0.5rem 0 0 0.5rem;
         }
-        .contact form textarea {
-            height: 150px;
+        #search-button {
+            border-radius: 0 0.5rem 0.5rem 0;
         }
-        .contact form button {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
         }
-        .contact form button:hover {
-            background-color: var(--secondary-color);
+        .pagination button {
+            margin: 0 0.5rem;
         }
-        footer {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem 0;
+        #page-info {
+            margin: 0 1rem;
         }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
+            .container {
                 padding: 1rem;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
-            .nav-links.show {
-                display: flex;
-            }
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
-            .hamburger {
-                display: block;
-            }
-            .about-content {
-                flex-direction: column;
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">Damodar Global Solutions</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">&#9776;</div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Empowering Your Business Success</h1>
-                <p>Damodar Global Solutions provides comprehensive business services to help you thrive in today's competitive market.</p>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </div>
-        </section>
-
-        <section id="services">
-            <div class="container">
-                <h2>Our Services</h2>
-                <div class="services">
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                        <h3>Bulk Product Buying and Selling</h3>
-                        <p>Efficient procurement and distribution of products in large quantities.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Global sourcing network</li>
-                                <li>Competitive pricing</li>
-                                <li>Quality assurance</li>
-                                <li>Inventory management</li>
-                            </ul>
-                                <a href="https://shop.damodarglobal.com" target="_blank" class="button" >Visit our shop</a>
-                                <div></div>
-
-
-
-                              <a href="https://s1.damodarglobal.com" target="_blank" class="button" >Download Shopping App</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                        </svg>
-                        <h3>Business Services</h3>
-                        <p>Comprehensive support for your business operations and growth.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Financial planning</li>
-                                <li>Marketing strategies</li>
-                                <li>Human resources management</li>
-                                <li>Business process optimization</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                        </svg>
-                        <h3>Consultation</h3>
-                        <p>Expert advice to help you make informed business decisions.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Strategic planning</li>
-                                <li>Market analysis</li>
-                                <li>Risk assessment</li>
-                                <li>Performance improvement</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="3" width="15" height="13"></rect>
-                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                        </svg>
-                        <h3>Logistics</h3>
-                        <p>Streamlined supply chain management and transportation solutions.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Warehousing and distribution</li>
-                                <li>Freight forwarding</li>
-                                <li>Customs clearance</li>
-                                <li>Last-mile delivery</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                        <h3>IT Services</h3>
-                        <p>Cutting-edge technology solutions to drive your business forward.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Software development</li>
-                                <li>Cloud computing</li>
-                                <li>Cybersecurity</li>
-                                <li>IT infrastructure management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 17 12 22 22 17"></polyline>
-                            <polyline points="2 12 12 17 22 12"></polyline>
-                        </svg>
-                        <h3>Additional Services</h3>
-                        <p>Customized solutions tailored to your unique business needs.</p>
-                        <button class="show-details">Learn More</button>
-                        <div class="service-details">
-                            <ul>
-                                <li>Project management</li>
-                                <li>Legal and compliance support</li>
-                                <li>Training and development</li>
-                                <li>Sustainability consulting</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <div class="container">
-                <h2>About Damodar Global Solutions</h2>
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="damodargslogo.png" alt="Damodar Global Solutions Team">
-                    </div>
-                    <div class="about-text">
-                        <p>Damodar Global Solutions is a leading provider of comprehensive business services. With our expertise in various domains, we help businesses thrive in today's competitive market. Our commitment to excellence and customer satisfaction sets us apart from the competition.</p>
-                        <p>Founded in 2010, we have grown from a small consulting firm to a global solutions provider, serving clients across industries and continents. Our team of experts brings diverse skills and experiences to tackle complex business challenges and drive sustainable growth for our clients.</p>
-                        <p>At Damodar Global Solutions, we believe in building long-term partnerships with our clients. We take the time to understand your unique needs and goals, and work closely with you to develop tailored solutions that deliver measurable results.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials" class="testimonials">
-            <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonial-card">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe">
-                    <h3>John Doe</h3>
-                    <p>CEO, Tech Innovations Inc.</p>
-                    <p>"Damodar Global Solutions transformed our supply chain, resulting in a 30% reduction in costs and improved efficiency. Their expertise and dedication are unmatched."</p>
-                </div>
-                <div class="testimonial-card">
-                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jane Smith">
-                    <h3>Jane Smith</h3>
-                    <p>Founder, Green Earth Enterprises</p>
-                    <p>"The consulting services provided by Damodar Global Solutions were instrumental in our company's expansion into new markets. Their insights and strategies were spot-on."</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Get in Touch</h2>
-                <form action="https://smtp-cloud.uni0shyam.workers.dev/" method="post">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="tel" name="phone" placeholder="Your Phone Number" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Damodar Global Solutions. All rights reserved.</p>
+    <div class="container">
+        <h1>DamodarGS Shop</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button id="search-button" class="button">Search</button>
         </div>
-    </footer>
+        
+        <div id="product-grid" class="product-grid">
+            <!-- Products will be dynamically added here -->
+        </div>
+
+        <div class="pagination">
+            <button id="prev-page" class="button">Previous</button>
+            <span id="page-info">Page 1 of 1</span>
+            <button id="next-page" class="button">Next</button>
+        </div>
+
+        <div id="cart" class="cart">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div id="cart-total" class="cart-total">
+                Total: ₹0.00
+            </div>
+        </div>
+        
+        <div class="order-form">
+            <h2>Complete Your Order</h2>
+            <form id="order-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>    
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" required>
+                </div>
+                <button type="submit" class="button">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <span class="close" aria-label="Close">&times;</span>
+            <img id="modal-product-image" src="" alt="Product" style="width:100%; max-height:300px; object-fit:contain; border-radius:0.5rem; margin-bottom:1rem;">
+            <h2 id="modal-title"></h2>
+            <p id="modal-product-description"></p>
+            <p id="modal-product-price" style="font-size:1.25rem; color:var(--secondary-color); margin-bottom:1rem;"></p>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" min="1" value="1">
+            </div>
+            <button id="add-to-cart" class="button">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('show');
-        });
+        // Global variables
+        let products = [];
+        let cart = [];
+        let selectedProduct = null;
+        let currentPage = 1;
+        let itemsPerPage = 8;
+        let filteredProducts = [];
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // DOM elements
+        const productGrid = document.getElementById('product-grid');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const orderForm = document.getElementById('order-form');
+        const modal = document.getElementById('product-modal');
+        const closeModal = document.getElementsByClassName('close')[0];
+        const modalProductImage = document.getElementById('modal-product-image');
+        const modalProductName = document.getElementById('modal-title');
+        const modalProductDescription = document.getElementById('modal-product-description');
+        const modalProductPrice = document.getElementById('modal-product-price');
+        const quantityInput = document.getElementById('quantity');
+        const addToCartButton = document.getElementById('add-to-cart');
+        const toast = document.getElementById('toast');
+
+        // Load cart from localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                renderCart();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Fetch products from API
+        function fetchProducts() {
+            showToast('Products are now loading...');
+            fetch('https://pro-fetch.ognasion.workers.dev/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    products = data;
+                    filteredProducts = [...products];
+                    renderProducts();
+                    updatePagination();
+                    showToast('Products loaded successfully!');
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                    showToast('Failed to load products. Please refresh the page.');
                 });
+        }
+
+        // Render products
+        function renderProducts() {
+            productGrid.innerHTML = '';
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageProducts = filteredProducts.slice(startIndex, endIndex);
+
+            pageProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">₹${product.price.toFixed(2)}</p>
+                        <button class="button view-details" data-id="${product.id}">View Details</button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
             });
+
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', () => handleProductSelect(button.dataset.id));
+            });
+        }
+
+        // Handle product selection
+        function handleProductSelect(productId) {
+            selectedProduct = products.find(p => p.id === parseInt(productId));
+            modalProductImage.src = selectedProduct.image;
+            modalProductName.textContent = selectedProduct.name;
+            modalProductDescription.textContent = selectedProduct.description;
+            modalProductPrice.textContent = `₹${selectedProduct.price.toFixed(2)}`;
+            quantityInput.value = 1;
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+        }
+
+        // Add to cart
+        addToCartButton.onclick = () => {
+            const quantity = parseInt(quantityInput.value);
+            if (isNaN(quantity) || quantity < 1) {
+                showToast('Please enter a valid quantity.');
+                return;
+            }
+            const existingItem = cart.find(item => item.id === selectedProduct.id);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ ...selectedProduct, quantity });
+            }
+            modal.style.display = 'none';
+            renderCart();
+            showToast(`${quantity} x ${selectedProduct.name} added to your cart.`);
+            saveCart();
+        }
+
+
+        
+
+
+        // Render cart
+        function renderCart() {
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span>${item.name} of ₹${item.price} (x <input type="number" min="1" value="${item.quantity}" data-id="${item.id}" class="cart-quantity">)</span>
+                    <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                    <button class="remove" data-id="${item.id}">Remove</button>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+
+            // Update cart total
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            cartTotal.textContent = `Total: ₹${total.toFixed(2)}`;
+
+            // Add event listeners for removing items
+            document.querySelectorAll('.remove').forEach(button => {
+                button.addEventListener('click', (e) => handleRemoveItem(e.target.dataset.id));
+            });
+
+            // Add event listeners for updating quantities
+            document.querySelectorAll('.cart-quantity').forEach(input => {
+                input.addEventListener('change', (e) => handleUpdateQuantity(e.target.dataset.id, e.target.value));
+            });
+
+            saveCart();
+        }
+
+        // Handle remove item
+        function handleRemoveItem(productId) {
+            cart = cart.filter(item => item.id !== parseInt(productId));
+            renderCart();
+            showToast('Item removed from your cart.');
+            saveCart();
+        }
+
+        // Handle update quantity
+        function handleUpdateQuantity(productId, newQuantity) {
+            const item = cart.find(item => item.id === parseInt(productId));
+            if (item) {
+                const quantity = parseInt(newQuantity);
+                if (isNaN(quantity) || quantity < 1) {
+                    showToast('Please enter a valid quantity.');
+                    renderCart(); // Reset the input to the current quantity
+                    return;
+                }
+                item.quantity = quantity;
+                renderCart();
+                showToast('Cart updated.');
+                saveCart();
+            }
+        }
+
+        // Handle order submission
+        orderForm.onsubmit = (e) => {
+            e.preventDefault();
+            const customerDetails = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+            };
+            
+            // Prepare order items with description/details
+            const orderItems = cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                description: item.description // Include item description
+            }));
+
+            // Send order to API
+            fetch('https://order-serv.ognasion.workers.dev/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    customerDetails, 
+                    items: orderItems // Send the prepared order items
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                showToast(`Your order has been placed. You'll soon receive a mail with the order details`);
+                cart = [];
+                renderCart();
+                orderForm.reset();
+                localStorage.removeItem('cart'); // Clear the cart from localStorage after successful order
+            })
+            .catch(error => {
+                console.error('Error submitting order:', error);
+                showToast('There was an error placing your order. Please try again.');
+            });
+        }
+
+        // Show toast message
+        function showToast(message) {
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Search products
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) || 
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            currentPage = 1;
+            renderProducts();
+            updatePagination();
+        }
+
+        // Update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages;
+        }
+
+        // Add event listeners for search and pagination
+        document.getElementById('search-button').addEventListener('click', searchProducts);
+        document.getElementById('search-input').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
         });
 
-        // Service details toggle
-        document.querySelectorAll('.show-details').forEach(button => {
-            button.addEventListener('click', function() {
-                const details = this.nextElementSibling;
-                details.style.display = details.style.display === 'block' ? 'none' : 'block';
-                this.textContent = details.style.display === 'block' ? 'Show Less' : 'Learn More';
-            });
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderProducts();
+                updatePagination();
+            }
+        });
+
+        document.getElementById('next-page').addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderProducts();
+                updatePagination();
+            }
+        });
+
+        // Load cart and fetch products when the page loads
+        window.addEventListener('load', () => {
+            loadCart();
+            fetchProducts();
         });
     </script>
 </body>
